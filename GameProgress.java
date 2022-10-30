@@ -58,7 +58,9 @@ public class GameProgress implements Serializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
-//удаляем заархивированные файлы
+    }
+
+    public static void deleteFileZip(String... str) {
         for (String s : str) {
             File file = new File(s);
             file.delete();

@@ -87,7 +87,13 @@ String (например, "/Users/admin/Games/GunRunner/savegames/save3.dat") и
 Таким образом, вызов метода saveGame() должен приводить к созданию файлов сохранений в папке savegames.
 
 Далее реализуйте метод zipFiles(), принимающий в качестве аргументов String полный путь к файлу архива
-(например, "/Users/admin/Games/GunRunner/savegames/zip.zip") и список запаковываемых объектов в виде списка строчек String полного пути к файлу (например, "/Users/admin/Games/GunRunner/savegames/save3.dat"). В методе Вам потребуется реализовать блок try-catch с объектами ZipOutputStream и FileOutputStream. Внутри него пробегитесь по списку файлов и для каждого организуйте запись в блоке try-catch через FileInputStream. Для этого создайте экземпляр ZipEntry и уведомьте ZipOutputStream о новом элементе архива с помощью метода putNextEntry(). Далее необходимо считать упаковываемый файл с помощью метода read() и записать его с помощью метода write(). После чего уведомьте ZipOutputStream о записи файла в архив с помощью метода closeEntry().
+(например, "/Users/admin/Games/GunRunner/savegames/zip.zip") и список запаковываемых объектов в виде
+списка строчек String полного пути к файлу (например, "/Users/admin/Games/GunRunner/savegames/save3.dat").
+В методе Вам потребуется реализовать блок try-catch с объектами ZipOutputStream и FileOutputStream.
+Внутри него пробегитесь по списку файлов и для каждого организуйте запись в блоке try-catch через FileInputStream.
+Для этого создайте экземпляр ZipEntry и уведомьте ZipOutputStream о новом элементе архива с помощью метода
+putNextEntry(). Далее необходимо считать упаковываемый файл с помощью метода read() и записать его с
+помощью метода write(). После чего уведомьте ZipOutputStream о записи файла в архив с помощью метода closeEntry().
 
 Далее, используя методы класса File, удалите файлы сохранений, не лежащие в архиве.
 
@@ -112,6 +118,10 @@ String (например, "/Users/admin/Games/GunRunner/savegames/save3.dat") и
  */
 public class Main {
     public static void main(String[] args) {
+        /*
+        а по поводу делать в разных проектах: на вебинаре сказали можно в одном проекте.
+        Основывался на вебинаре
+         */
         DirFileCreatLog dr = new DirFileCreatLog();
         GameProgress gp1 = new GameProgress(10, 10, 10, 25.5);
         GameProgress gp2 = new GameProgress(20, 20, 20, 31.5);
@@ -121,6 +131,9 @@ public class Main {
         GameProgress.saveGame("D:\\Games\\savegames\\savegame3.dat", gp3);
         GameProgress.zipFile("D:\\Games\\savegames\\savegame.zip",
                 "D:\\Games\\savegames\\savegame1.dat",
+                "D:\\Games\\savegames\\savegame2.dat",
+                "D:\\Games\\savegames\\savegame3.dat");
+        GameProgress.deleteFileZip("D:\\Games\\savegames\\savegame1.dat",
                 "D:\\Games\\savegames\\savegame2.dat",
                 "D:\\Games\\savegames\\savegame3.dat");
         GameProgress.openZip("D:\\Games\\savegames\\savegame.zip", "D:\\Games\\savegames\\");
